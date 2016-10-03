@@ -19,7 +19,7 @@ package com.example.android.miwok;
  * {@link Word} represents a vocabulary word that the user wants to learn.
  * It contains a default translation, a Miwok translation, and an image for that word.
  */
-public class Word {
+ public class Word {
 
     /** Default translation for the word */
     private String mDefaultTranslation;
@@ -32,6 +32,8 @@ public class Word {
 
     /** Constant value that represents no image was provided for this word */
     private static final int NO_IMAGE_PROVIDED = -1;
+
+    private int mSoundId;
 
     /**
      * Create a new Word object.
@@ -54,10 +56,17 @@ public class Word {
      * @param imageResourceId is the drawable resource ID for the image associated with the word
      *
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int soundId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
+        mSoundId = soundId;
+    }
+
+    public Word(String defaultTranslation, String miwokTranslation,  int soundId) {
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTranslation;
+        mSoundId = soundId;
     }
 
     /**
@@ -86,5 +95,19 @@ public class Word {
      */
     public boolean hasImage() {
         return mImageResourceId != NO_IMAGE_PROVIDED;
+    }
+
+    public int getmSoundId() {
+        return mSoundId;
+    }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "mDefaultTranslation='" + mDefaultTranslation + '\'' +
+                ", mMiwokTranslation='" + mMiwokTranslation + '\'' +
+                ", mAudioResourceId=" + mSoundId +
+                ", mImageResourceId=" + mImageResourceId +
+                '}';
     }
 }
